@@ -3893,6 +3893,17 @@ export const Index: Record<string, any> = {
       subcategory: "undefined",
       chunks: []
     },
+    "tooltiphelp": {
+      name: "tooltiphelp",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: ["src/registry/default/ui/tooltiphelp.tsx"],
+      component: React.lazy(() => import("@/registry/default/ui/tooltiphelp.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
     "toolbar": {
       name: "toolbar",
       type: "registry:ui",

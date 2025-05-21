@@ -16,6 +16,7 @@ import {
 import { cn } from "@/lib/utils"
 
 import { FieldError, Label } from "./field"
+import { LabelWithTooltipHelp } from "./tooltiphelp"
 
 const TextField = AriaTextField
 
@@ -62,6 +63,7 @@ const TextArea = ({ className, ...props }: AriaTextAreaProps) => {
 interface JollyTextFieldProps extends AriaTextFieldProps {
   label?: string
   description?: string
+  tooltip?: string
   errorMessage?: string | ((validation: AriaValidationResult) => string)
   textArea?: boolean
 }
@@ -72,6 +74,7 @@ function JollyTextField({
   errorMessage,
   textArea,
   className,
+  tooltip,
   ...props
 }: JollyTextFieldProps) {
   return (
@@ -81,7 +84,16 @@ function JollyTextField({
       )}
       {...props}
     >
-      <Label>{label}</Label>
+      {(label && tooltip)
+        ? (
+            <LabelWithTooltipHelp
+              label={label}
+              tooltip={tooltip}
+            />
+          )
+        : (
+            <Label>{label}</Label>
+          )}
       {textArea ? <TextArea /> : <Input />}
       {description && (
         <Text className="text-sm text-muted-foreground" slot="description">

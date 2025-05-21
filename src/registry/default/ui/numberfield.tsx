@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils"
 
 import { Button } from "./button"
 import { FieldError, FieldGroup, Label } from "./field"
+import { LabelWithTooltipHelp } from "./tooltiphelp"
 
 const NumberField = AriaNumberField
 
@@ -72,6 +73,7 @@ function NumberFieldStepper({ className, ...props }: AriaButtonProps) {
 interface JollyNumberFieldProps extends AriaNumberFieldProps {
   label?: string
   description?: string
+  tooltip?: string
   errorMessage?: string | ((validation: AriaValidationResult) => string)
 }
 
@@ -80,6 +82,7 @@ function JollyNumberField({
   description,
   errorMessage,
   className,
+  tooltip,
   ...props
 }: JollyNumberFieldProps) {
   return (
@@ -89,7 +92,16 @@ function JollyNumberField({
       )}
       {...props}
     >
-      <Label>{label}</Label>
+      {(label && tooltip)
+        ? (
+            <LabelWithTooltipHelp
+              label={label}
+              tooltip={tooltip}
+            />
+          )
+        : (
+            <Label>{label}</Label>
+          )}
       <FieldGroup>
         <NumberFieldInput />
         <NumberFieldSteppers />
